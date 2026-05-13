@@ -12,15 +12,12 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      overflow-y: hidden;
     }
 
     a {
       color: black;
 
-    }
-
-    a.dark {
-      color: white;
     }
 
     a:hover {
@@ -30,4 +27,21 @@
     body.dark {
       background: #111111;
       color: #ffffff;
+
+       a {
+        color: white;
+      }
+
+      a:hover {
+        color: #4A9EE8
+      }
+    }
+
+    .header{
+      font-family:  'Times New Roman', Times, serif;
+      font-weight: 100;
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
     }
