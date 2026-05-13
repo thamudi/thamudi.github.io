@@ -1,0 +1,33 @@
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    a {
+      color: black;
+
+    }
+
+    a.dark {
+      color: white;
+    }
+
+    a:hover {
+      color: #4A9EE8
+    }
+
+    body.dark {
+      background: #111111;
+      color: #ffffff;
+    }
