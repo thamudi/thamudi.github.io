@@ -64,26 +64,32 @@
 
     const gridCount = () => Math.max(1, Math.floor((baseCanvas.width - width) / x));
 
+    const gridOffset = (count) => (baseCanvas.width - (x * (count - 1) + width)) / 2;
+
     const drawBaseCanvas = () => {
       baseCtx.clearRect(0, 0, baseCanvas.width, baseCanvas.height);
       const count = gridCount();
-      for (let i = 1; i <= count; i++) {
-        for (let j = 1; j <= count; j++) {
-          drawRectangle(width, height, x * i, y * j, baseCtx);
+      const offset = gridOffset(count);
+      for (let i = 0; i < count; i++) {
+        for (let j = 0; j < count; j++) {
+          drawRectangle(width, height, offset + x * i, offset + y * j, baseCtx);
         }
       }
     }
 
     const drawOverlayCanvas = (mouseX, mouseY) => {
       const count = gridCount();
-      for (let i = 1; i <= count; i++) {
-        for (let j = 1; j <= count; j++) {
-          if (Math.random() > 0.5 && !(mouseX > x * i && mouseX < x * i + width && mouseY > y * j && mouseY < y * j + height)) {
+      const offset = gridOffset(count);
+      for (let i = 0; i < count; i++) {
+        for (let j = 0; j < count; j++) {
+          const rx = offset + x * i;
+          const ry = offset + y * j;
+          if (Math.random() > 0.5 && !(mouseX > rx && mouseX < rx + width && mouseY > ry && mouseY < ry + height)) {
             drawRectangle(
               width / 1.2,
               height / 1.2,
-              x * i + width / 12,
-              y * j + height / 12,
+              rx + width / 12,
+              ry + height / 12,
               overlayCtx
             );
           }
@@ -93,15 +99,18 @@
 
     const drawTraceOverlayCanvas = (mouseX, mouseY) => {
       const count = gridCount();
-      for (let i = 1; i <= count; i++) {
-        for (let j = 1; j <= count; j++) {
-          if (mouseX > x * i && mouseX < x * i + width &&
-            mouseY > y * j && mouseY < y * j + height) {
+      const offset = gridOffset(count);
+      for (let i = 0; i < count; i++) {
+        for (let j = 0; j < count; j++) {
+          const rx = offset + x * i;
+          const ry = offset + y * j;
+          if (mouseX > rx && mouseX < rx + width &&
+            mouseY > ry && mouseY < ry + height) {
             drawRectangle(
               width / 1.2,
               height / 1.2,
-              x * i + width / 12,
-              y * j + height / 12,
+              rx + width / 12,
+              ry + height / 12,
               traceOverlayCtx,
               "#4A9EE8",
               4
